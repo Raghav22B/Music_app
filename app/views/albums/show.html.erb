@@ -1,0 +1,17 @@
+<%=render "navbar"%>
+<h1><%= @album.name %></h1>
+<p><%= @album.description %></p>
+ <% @album.audio_data%>
+    <audio controls>
+    <source src="<%= rails_blob_url(@album.audio_data)%>" type="<%= @album.audio_data.content_type %>">
+ </audio>
+<ul>
+  <li><%=link_to"download",rails_blob_path(@album.audio_data, disposition: "attachment") %></li>
+  <%if current_user.id == @album.user_id%>
+  <li><%= link_to "Edit", edit_album_path(@album) %></li>
+  <li><%= link_to "Destroy", album_path(@album), data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"} %></li>
+</ul>
+<%end%>
+<%= render "footer" %>
