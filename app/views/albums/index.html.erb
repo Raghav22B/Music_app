@@ -1,24 +1,23 @@
-<div class="">
 <%= render "navbar"%>
 <form class="d-flex ms-auto mt-5  justify-content-center ">
     <%= search_form_for @q, url: root_path do |f| %>
       <%= f.search_field :tags_name_or_name_cont, placeholder: "Search By Tag or Name" %>
-      <%= f.search_field :user_email_cont,placeholder:"search by email" %>.
+      <%= f.search_field :user_email_cont,placeholder:"search by email" %>
       <%= f.submit "Search", class:"btn btn-primary" %>
     <% end %>
  </form> 
-<div class="container mt-5  ">
+<div class="container mt-5">
   <div class="row">  
-    <% @albums.each do |album| %>    
+    <% @albums.each do |album|%>
       <div class="col-lg-4 mt-3 link-decoration-none">
         <a href="/albums/<%= album.id %>" class="text-decoration-none text-black " > 
           <div class="card mt-3" style="width: 18rem;">
-          <%= image_tag (album.cover_image) if album.cover_image.attached? %>
+           <%= image_tag (album.cover_image) if album.cover_image.attached? %>
             <div class="card-body">
-            <h5 class="card-title">
-              <%= album.name  %>  
-              <h5>Tag:<%=album.tag_list%></h5>              
-             </h5>           
+              <h5 class="card-title">
+                <%= album.name  %>
+                <h5>Tag:<%=album.tag_list%></h5>
+              </h5>
             </div>
           </div>
         </a>
